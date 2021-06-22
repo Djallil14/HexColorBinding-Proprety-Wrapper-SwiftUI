@@ -1,6 +1,6 @@
 //
-//  SwiftUIView.swift
-//  Melomania Proto without firebase
+//  ColorBindingView.swift
+//
 //
 //  Created by Djallil Elkebir on 2021-06-22.
 //
