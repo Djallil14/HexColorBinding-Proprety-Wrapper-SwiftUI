@@ -1,11 +1,30 @@
 //
 //  HexColorPropretyWrapper + Extension + HexColor.swift
-//  Melomania Proto without firebase
+// 
 //
 //  Created by Djallil Elkebir on 2021-06-22.
 //
 
 import SwiftUI
+
+@propertyWrapper struct HexColorBinding: DynamicProperty {
+    @State private var hexColor: String
+    var wrappedValue: String {
+        get {
+            hexColor
+        }
+        set {
+            hexColor = newValue
+        }
+    }
+    var projectedValue: Binding<Color> {
+        Binding(get: { Color(hexString:self.wrappedValue)! },
+                                         set: {self.hexColor = UIColor($0).toHexString()})
+    }
+    init(_ hexColor: String){
+        self.hexColor = hexColor
+    }
+}
 
 extension Color {
     
@@ -107,22 +126,4 @@ extension UIColor {
     }
 }
 
-@propertyWrapper struct HexColorBinding: DynamicProperty {
-    @State private var hexColor: String
-    var wrappedValue: String {
-        get {
-            hexColor
-        }
-        set {
-            hexColor = newValue
-        }
-    }
-    var projectedValue: Binding<Color> {
-        Binding(get: { Color(hexString:self.wrappedValue)! },
-                                         set: {self.hexColor = UIColor($0).toHexString()})
-    }
-    init(_ hexColor: String){
-        self.hexColor = hexColor
-    }
-}
 
