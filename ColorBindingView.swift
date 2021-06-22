@@ -29,7 +29,7 @@ struct ColorBindingView: View {
     }
 }
 
-struct SwiftUIView_Previews: PreviewProvider {
+struct ColorBindingView_Previews: PreviewProvider {
     static var previews: some View {
         ColorBindingView()
     }
