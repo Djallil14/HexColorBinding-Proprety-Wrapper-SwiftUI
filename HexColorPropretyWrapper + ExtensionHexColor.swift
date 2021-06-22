@@ -29,33 +29,29 @@ import SwiftUI
 extension Color {
     
     init?(hexString: String) {
-        let rgbaData = getrgbaData(hexString: hexString)
-        if(rgbaData != nil){
-            self.init(
-                .sRGB,
-                red:     Double(rgbaData!.r),
-                green:   Double(rgbaData!.g),
-                blue:    Double(rgbaData!.b),
-                opacity: Double(rgbaData!.a)
-            )
-            return
+        guard let rgbData = getrgbaData(hexString: hexString) else {
+            return nil
         }
-        return nil
+        self.init(
+            .sRGB,
+            red:     Double(rgbaData.r),
+            green:   Double(rgbaData.g),
+            blue:    Double(rgbaData.b),
+            opacity: Double(rgbaData.a)
+        )
     }
 }
 
 extension UIColor {
     public convenience init?(hexString: String) {
-        let rgbaData = getrgbaData(hexString: hexString)
-        if(rgbaData != nil){
-            self.init(
-                red:   rgbaData!.r,
-                green: rgbaData!.g,
-                blue:  rgbaData!.b,
-                alpha: rgbaData!.a)
-            return
+        guard let rgbaData = getrgbaData(hexString: hexString) else {
+            return nil
         }
-        return nil
+        self.init(
+            red:   rgbaData.r,
+            green: rgbaData.g,
+            blue:  rgbaData.b,
+            alpha: rgbaData.a)
     }
     
 }
